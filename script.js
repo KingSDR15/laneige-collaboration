@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const address = formData.get("address").trim();
 
     const imageFiles = [];
-    for (let i = 1; i <= 8; i++) {
+    for (let i = 1; i <= 20; i++) { // UPDATED from 8 → 20
       const file = formData.get(`img${i}`);
       if (file && file.type.startsWith("image/")) {
         imageFiles.push(file);
@@ -96,7 +96,8 @@ document.addEventListener("DOMContentLoaded", () => {
     doc.setFont("helvetica", "bold");
     doc.text("Invoice Summary", 20, y); y += lineHeight;
     doc.setFont("helvetica", "normal");
-    doc.text("Items Provided (8): $0", 25, y); y += lineHeight;
+    doc.text(`Items Provided (20): $0`, 25, y); // UPDATED count
+    y += lineHeight;
     doc.text("Delivery Fee (Risk Management): $219", 25, y); y += lineHeight;
     doc.text("------------------------------------------------------", 25, y); y += lineHeight;
     doc.setFont("helvetica", "bold");
@@ -112,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const safeName = data.name.replace(/[^a-z0-9]/gi, "_").toLowerCase();
 
-    // Ensure download is complete before showing success UI
     doc.save(`collaboration_agreement_${safeName}.pdf`, {
       returnPromise: true
     }).then(() => {
@@ -125,11 +125,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("collabForm").style.display = "none";
     document.getElementById("success").style.display = "block";
 
-    const message = encodeURIComponent(
-      `Hi POSSE,\n\nMy name is ${data.name} and I have completed the collaboration form and downloaded the agreement. Please find my attachment below.`
-    );
-
-    document.getElementById("emailLink").href = `mailto:posseofficialcollaboration@gmail.com?subject=Collaboration Submission from ${data.name}&body=${message}`;
+    // Solid mail icon display (Font Awesome solid)
+    const emailIcon = `<i class="fas fa-envelope"></i>`;
+    document.getElementById("emailLink").innerHTML = `${emailIcon} Send Email`;
+    document.getElementById("emailLink").href =
+      `mailto:posseofficialcollaboration@gmail.com?subject=Collaboration Submission from ${data.name}&body=Hi POSSE,%0A%0AMy name is ${data.name} and I have completed the collaboration form and downloaded the agreement. Please find my attachment below.`;
   }
 
   function readFileAsDataURL(file) {
