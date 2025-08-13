@@ -19,41 +19,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const address = formData.get("address").trim();
 
     const imageFiles = [];
-    for (let i = 1; i <= 20; i++) { // UPDATED from 8 → 20
+    for (let i = 1; i <= 20; i++) {
       const file = formData.get(`img${i}`);
       if (file && file.type.startsWith("image/")) {
         imageFiles.push(file);
       }
     }
 
-    // Show preview modal
-    document.getElementById("previewName").textContent = name;
-    document.getElementById("previewInsta").textContent = insta;
-    document.getElementById("previewEmail").textContent = email;
-
-    const imgContainer = document.getElementById("previewImages");
-    imgContainer.innerHTML = "";
-
-    for (let file of imageFiles) {
-      const dataURL = await readFileAsDataURL(file);
-      const imgEl = document.createElement("img");
-      imgEl.src = dataURL;
-      imgEl.className = "preview-thumb";
-      imgContainer.appendChild(imgEl);
-    }
-
-    window.previewData = { name, email, insta, phone, address, imageFiles };
-    document.getElementById("previewModal").style.display = "flex";
-  });
-
-  document.getElementById("cancelPreview").addEventListener("click", () => {
-    document.getElementById("previewModal").style.display = "none";
-  });
-
-  document.getElementById("confirmDownload").addEventListener("click", async () => {
+    // Generate PDF directly
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
-    const data = window.previewData;
 
     let y = 20;
     const lineHeight = 8;
@@ -72,19 +47,18 @@ document.addEventListener("DOMContentLoaded", () => {
     doc.setFont("helvetica", "bold");
     doc.text("Influencer Details", 20, y); y += lineHeight;
     doc.setFont("helvetica", "normal");
-    doc.text(`Full Name: ${data.name}`, 20, y); y += lineHeight;
-    doc.text(`Email Address: ${data.email}`, 20, y); y += lineHeight;
-    doc.text(`Instagram Handle: ${data.insta}`, 20, y); y += lineHeight;
-    doc.text(`Phone Number: ${data.phone}`, 20, y); y += lineHeight;
-    doc.text(`Delivery Address: ${data.address}`, 20, y); y += lineHeight * 2;
+    doc.text(`Full Name: ${name}`, 20, y); y += lineHeight;
+    doc.text(`Email Address: ${email}`, 20, y); y += lineHeight;
+    doc.text(`Instagram Handle: ${insta}`, 20, y); y += lineHeight;
+    doc.text(`Phone Number: ${phone}`, 20, y); y += lineHeight;
+    doc.text(`Delivery Address: ${address}`, 20, y); y += lineHeight * 2;
 
     doc.setFont("helvetica", "bold");
     doc.text("Selected Product Screenshots:", 20, y); y += lineHeight;
 
-    for (let i = 0; i < data.imageFiles.length; i++) {
-      const imgData = await readFileAsDataURL(data.imageFiles[i]);
+    for (let i = 0; i < imageFiles.length; i++) {
+      const imgData = await readFileAsDataURL(imageFiles[i]);
       if (y > 230) { doc.addPage(); y = 20; }
-
       doc.setFont("helvetica", "normal");
       doc.text(`Item ${i + 1}:`, 25, y);
       y += 4;
@@ -96,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     doc.setFont("helvetica", "bold");
     doc.text("Invoice Summary", 20, y); y += lineHeight;
     doc.setFont("helvetica", "normal");
-    doc.text(`Items Provided (20): $0`, 25, y); // UPDATED count
+    doc.text(`Items Provided (${imageFiles.length}): $0`, 25, y);
     y += lineHeight;
     doc.text("Delivery Fee (Risk Management): $219", 25, y); y += lineHeight;
     doc.text("------------------------------------------------------", 25, y); y += lineHeight;
@@ -111,26 +85,21 @@ document.addEventListener("DOMContentLoaded", () => {
       { maxWidth: 170 }
     );
 
-    const safeName = data.name.replace(/[^a-z0-9]/gi, "_").toLowerCase();
+    const safeName = name.replace(/[^a-z0-9]/gi, "_").toLowerCase();
 
     doc.save(`collaboration_agreement_${safeName}.pdf`, {
       returnPromise: true
     }).then(() => {
-      afterDownloadSuccess(data);
+      // Show success page
+      form.style.display = "none";
+      document.getElementById("success").style.display = "block";
+
+      const emailIcon = `<i class="fas fa-envelope"></i>`;
+      const emailLink = document.getElementById("emailLink");
+      emailLink.innerHTML = `${emailIcon} Send Email`;
+      emailLink.href = `mailto:posseofficialcollaboration@gmail.com?subject=Collaboration Submission from ${name}&body=Hi POSSE,%0A%0AMy name is ${name} and I have completed the collaboration form and downloaded the agreement. Please find my attachment below.`;
     });
   });
-
-  function afterDownloadSuccess(data) {
-    document.getElementById("previewModal").style.display = "none";
-    document.getElementById("collabForm").style.display = "none";
-    document.getElementById("success").style.display = "block";
-
-    // Solid mail icon display (Font Awesome solid)
-    const emailIcon = `<i class="fas fa-envelope"></i>`;
-    document.getElementById("emailLink").innerHTML = `${emailIcon} Send Email`;
-    document.getElementById("emailLink").href =
-      `mailto:posseofficialcollaboration@gmail.com?subject=Collaboration Submission from ${data.name}&body=Hi POSSE,%0A%0AMy name is ${data.name} and I have completed the collaboration form and downloaded the agreement. Please find my attachment below.`;
-  }
 
   function readFileAsDataURL(file) {
     return new Promise((resolve) => {
