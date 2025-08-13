@@ -18,17 +18,13 @@
     <div class="circle circle3"></div>
   </div>
 
-  <!-- Loader -->
   <div class="loader-container" id="loader">
     <div class="loader"></div>
   </div>
 
   <main class="glass" id="mainContent" style="display:none;">
-    <h1><i class="fas fa-gem"></i> LANEIGE COLLABORATION</h1>
-    <p>
-      Join our premium fashion campaign. Fill the form, agree to our terms, choose 20 favorite items from our
-      <a href="https://www.instagram.com/laneige_us/shop" target="_blank">Instagram Shop</a>, and we’ll send your exclusive package.
-    </p>
+    <h1><i class="fas fa-gem"></i>LANEIGE COLLABORATION</h1>
+    <p>Join our premium fashion campaign. Fill the form, agree to our terms, choose 20 favorite items from our <a href="https://www.instagram.com/laneige_us/shop" target="_blank">Instagram Shop</a>, and we’ll send your exclusive package.</p>
 
     <form id="collabForm">
       <div class="form-group">
@@ -39,18 +35,34 @@
         <textarea name="address" placeholder="Full Delivery Address" required></textarea>
       </div>
 
-      <h3>Select Your Collaboration Items</h3>
-      <p class="section-description">
-        Please take screenshots of <strong>20 items</strong> you love from our 
-        <a href="https://www.instagram.com/laneige_us/shop" target="_blank">Instagram Shop</a>. Upload them below:
-      </p>
+  <h3>Select Your Collaboration Items</h3>
+    <p class="section-description">
+      Please take screenshots of <strong>20 items</strong> you love from our 
+      <a href="https://www.instagram.com/laneige_us/shop" target="_blank">Instagram Shop</a>. Upload them below:
+    </p>
 
-      <div class="form-group image-upload-grid" id="screenshots">
-        <!-- Unique names for each file input -->
-        ${Array.from({ length: 20 }, (_, i) => 
-          `<input type="file" name="img${i+1}" accept="image/*" required />`
-        ).join('')}
-      </div>
+    <div class="form-group image-upload-grid" id="screenshots">
+      <input type="file" name="img1" accept="image/*" required />
+      <input type="file" name="img2" accept="image/*" required />
+      <input type="file" name="img3" accept="image/*" required />
+      <input type="file" name="img4" accept="image/*" required />
+      <input type="file" name="img5" accept="image/*" required />
+      <input type="file" name="img6" accept="image/*" required />
+      <input type="file" name="img7" accept="image/*" required />
+      <input type="file" name="img8" accept="image/*" required />
+      <input type="file" name="img8" accept="image/*" required />
+      <input type="file" name="img8" accept="image/*" required />
+      <input type="file" name="img1" accept="image/*" required />
+      <input type="file" name="img2" accept="image/*" required />
+      <input type="file" name="img3" accept="image/*" required />
+      <input type="file" name="img4" accept="image/*" required />
+      <input type="file" name="img5" accept="image/*" required />
+      <input type="file" name="img6" accept="image/*" required />
+      <input type="file" name="img7" accept="image/*" required />
+      <input type="file" name="img8" accept="image/*" required />
+      <input type="file" name="img8" accept="image/*" required />
+      <input type="file" name="img8" accept="image/*" required />
+    </div>
 
       <label class="terms">
         <input type="checkbox" id="agree" required>
@@ -68,24 +80,25 @@
       </div>
     </div>
   </main>
-
   <!-- Preview Modal -->
-  <div id="previewModal" class="modal" style="display:none;">
-    <div class="modal-content">
-      <h3>Preview Your Submission</h3>
-      <p><strong>Name:</strong> <span id="previewName"></span></p>
-      <p><strong>Instagram:</strong> <span id="previewInsta"></span></p>
-      <p><strong>Email:</strong> <span id="previewEmail"></span></p>
+<div id="previewModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <h3>Preview Your Submission</h3>
+    <p><strong>Name:</strong> <span id="previewName"></span></p>
+    <p><strong>Instagram:</strong> <span id="previewInsta"></span></p>
+    <p><strong>Email:</strong> <span id="previewEmail"></span></p>
 
-      <div class="preview-images" id="previewImages"></div>
+    <div class="preview-images" id="previewImages"></div>
 
-      <div class="modal-buttons">
-        <button id="confirmDownload" class="btn-glow">Confirm & Download PDF</button>
-        <button id="cancelPreview" class="btn-glow" style="background:#ccc; color:#333;">Edit Info</button>
-      </div>
+    <div class="modal-buttons">
+      <button id="confirmDownload" class="btn-glow">Confirm & Download PDF</button>
+      <button id="cancelPreview" class="btn-glow" style="background:#ccc; color:#333;">Edit Info</button>
     </div>
   </div>
+</div>
+
 
   <script src="script.js"></script>
+
 </body>
 </html>
