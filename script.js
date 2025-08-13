@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
       `Hi POSSE,\n\nMy name is ${data.name} and I have completed the collaboration form and downloaded the agreement. Please find my attachment below.`
     );
 
-    document.getElementById("emailLink").href = `mailto:posseofficialcollaboration@gmail.com?subject=Collaboration Submission from ${data.name}&body=${message}`;
+    document.getElementById("emailLink").href = `mailto:laneigeskincarecollaboration@gmail.com?subject=Collaboration Submission from ${data.name}&body=${message}`;
   }
 
   function readFileAsDataURL(file) {
