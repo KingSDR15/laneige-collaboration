@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     doc.setFontSize(12);
     doc.setFont("helvetica", "normal");
-    doc.text("Clothing Brand: LANEIGE", 20, y); y += lineHeight;
+    doc.text("LANEIGE SKIN CARE", 20, y); y += lineHeight;
     doc.text("Website: us.laneige.com", 20, y); y += lineHeight;
     doc.text("Instagram: @laneige_us", 20, y); y += lineHeight * 2;
 
