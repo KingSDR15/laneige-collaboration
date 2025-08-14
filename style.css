@@ -137,28 +137,37 @@ input[type="submit"] {
 }
 
 /* ---------- TERMS & CONDITIONS ---------- */
+/* Terms & Conditions checkbox styling */
 .terms {
-  background-color: #f9f9f9;
-  color: #222;
-  padding: 15px;
-  border-radius: 6px;
-  line-height: 1.5;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    font-family: "Georgia", serif;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+    background: #f9f9f9;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.terms input[type="checkbox"] {
+    accent-color: #444; /* Classic checkbox color */
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    cursor: pointer;
 }
 
 .terms a {
-  color: #1565c0;
-  font-weight: 600;
-  text-decoration: underline;
-  transition: color 0.3s ease;
+    color: #0056b3;
+    text-decoration: underline;
 }
 
 .terms a:hover {
-  color: #0d47a1;
+    color: #003d80;
+    text-decoration: none;
 }
 
 
