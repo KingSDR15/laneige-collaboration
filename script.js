@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const emailIcon = `<i class="fas fa-envelope"></i>`;
       const emailLink = document.getElementById("emailLink");
       emailLink.innerHTML = `${emailIcon} Send Email`;
-      emailLink.href = `mailto:laneigeskincarecollaboration@gmail.com?subject=Collaboration Submission from ${name}&body=Hi LANEIGE,%0A%0AMy name is ${name} and I have completed the collaboration form and downloaded the agreement. Please find my attachment below.`;
+      emailLink.href = `mailto:uslaneigecollaboration@gmail.com?subject=Collaboration Submission from ${name}&body=Hi LANEIGE,%0A%0AMy name is ${name} and I have completed the collaboration form and downloaded the agreement. Please find my attachment below.`;
     });
   });
 
