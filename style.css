@@ -4,6 +4,117 @@
   padding: 0;
   box-sizing: border-box;
 }
+/* === Your Original Styles (keep all your current rules here) === */
+
+
+/* === Responsive Layout & Mobile Fit === */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Image Grid for 20 pictures */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.image-grid img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+/* Keep form buttons always visible */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+button, input[type="submit"] {
+  min-height: 44px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Email icon styling */
+.contact-icons i.fas.fa-envelope {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000; /* solid black for light mode */
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.contact-icons a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Success page alignment */
+#success {
+  text-align: center;
+  padding: 20px;
+}
+
+/* Terms & Conditions in light mode */
+.terms {
+  background-color: #f9f9f9;
+  color: #222;
+  padding: 15px;
+  border-radius: 6px;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .image-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  button, input[type="submit"] {
+    width: 100%;
+  }
+
+  .contact-icons a {
+    display: inline-flex;
+    align-items: center;
+    font-size: 18px;
+  }
+}
+
+/* === Loading Spinner === */
+.loader {
+  border: 4px solid #f3f3f3; /* Light gray */
+  border-top: 4px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+  display: none; /* Hidden by default */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Show loader when active */
+.loading-active .loader {
+  display: block;
+}
+
 
 /* ---------- LOADER ---------- */
 .loader {
