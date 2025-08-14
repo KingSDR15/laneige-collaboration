@@ -169,8 +169,8 @@ input[type="submit"] {
 }
 
 .terms input[type="checkbox"]:checked {
-    background-color: #4CAF50;
-    border-color: #4CAF50;
+    background-color: #af4c84;
+    border-color: #bd3098;
 }
 
 .terms input[type="checkbox"]:checked::after {
@@ -183,7 +183,7 @@ input[type="submit"] {
 }
 
 .terms a {
-    color: #4CAF50;
+    color: #af4c81;
     text-decoration: none;
     font-weight: 500;
     border-bottom: 1px solid transparent;
@@ -191,11 +191,8 @@ input[type="submit"] {
 }
 
 .terms a:hover {
-    border-bottom: 1px solid #4CAF50;
-}
-
-
-/* ---------- LOADER (Centered Glow Spinner) ---------- */
+    border-bottom: 1px solid #64183a;
+}/* ---------- LOADER (Centered Glow Spinner) ---------- */
 .loader {
   position: fixed;
   top: 50%;
