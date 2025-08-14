@@ -4,23 +4,24 @@
   padding: 0;
   box-sizing: border-box;
 }
-/* === Your Original Styles (keep all your current rules here) === */
 
-
-/* === Responsive Layout & Mobile Fit === */
 html, body {
   max-width: 100%;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8f9fc;
+  color: #333;
 }
 
+/* ---------- GLOBAL IMAGE RULES ---------- */
 img {
   max-width: 100%;
   height: auto;
 }
 
-/* Image Grid for 20 pictures */
+/* ---------- IMAGE GRID (20 pictures) ---------- */
 .image-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -33,24 +34,68 @@ img {
   border-radius: 6px;
 }
 
-/* Keep form buttons always visible */
+/* ---------- FORM STYLES ---------- */
 form {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-button, input[type="submit"] {
+form input, 
+form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  background: #fff;
+}
+
+form textarea {
+  resize: none;
+}
+
+form > *:last-child {
+  margin-top: auto;
+}
+
+/* ---------- BUTTONS ---------- */
+button, 
+input[type="submit"] {
   min-height: 44px;
   font-size: 16px;
   cursor: pointer;
 }
 
-/* Email icon styling */
+.btn-glow {
+  display: inline-block;
+  padding: 12px 20px;
+  background: #2196f3;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(33, 150, 243, 0.4);
+}
+
+.btn-glow:hover {
+  background: #1976d2;
+  box-shadow: 0 4px 20px rgba(25, 118, 210, 0.6);
+}
+
+/* ---------- CONTACT ICONS ---------- */
+.contact-icons {
+  text-align: center;
+  margin-top: 20px;
+}
+
 .contact-icons i.fas.fa-envelope {
   font-size: 24px;
   font-weight: bold;
-  color: #000; /* solid black for light mode */
+  color: #000;
   margin-right: 8px;
   vertical-align: middle;
 }
@@ -58,15 +103,40 @@ button, input[type="submit"] {
 .contact-icons a {
   text-decoration: none;
   color: inherit;
+  display: inline-flex;
+  align-items: center;
+  font-size: 18px;
 }
 
-/* Success page alignment */
+.mail-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background: linear-gradient(90deg, #4facfe, #00f2fe);
+  color: white;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.mail-button i {
+  font-size: 1.3rem;
+}
+
+.mail-button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(90deg, #43e97b, #38f9d7);
+}
+
+/* ---------- SUCCESS PAGE ---------- */
 #success {
   text-align: center;
   padding: 20px;
 }
 
-/* Terms & Conditions in light mode */
+/* ---------- TERMS & CONDITIONS ---------- */
 .terms {
   background-color: #f9f9f9;
   color: #222;
@@ -74,26 +144,24 @@ button, input[type="submit"] {
   border-radius: 6px;
   line-height: 1.5;
   font-size: 14px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-/* Mobile adjustments */
-@media (max-width: 768px) {
-  .image-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  button, input[type="submit"] {
-    width: 100%;
-  }
-
-  .contact-icons a {
-    display: inline-flex;
-    align-items: center;
-    font-size: 18px;
-  }
+.terms a {
+  color: #1565c0;
+  font-weight: 600;
+  text-decoration: underline;
+  transition: color 0.3s ease;
 }
 
-/* === Loading Spinner === */
+.terms a:hover {
+  color: #0d47a1;
+}
+
+/* ---------- LOADER (Inline) ---------- */
 .loader {
   border: 4px solid #f3f3f3; /* Light gray */
   border-top: 4px solid #3498db; /* Blue */
@@ -105,18 +173,11 @@ button, input[type="submit"] {
   display: none; /* Hidden by default */
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Show loader when active */
 .loading-active .loader {
   display: block;
 }
 
-
-/* ---------- LOADER ---------- */
+/* ---------- LOADER (Centered Glow Spinner) ---------- */
 .loader {
   position: fixed;
   top: 50%;
@@ -147,11 +208,26 @@ button, input[type="submit"] {
   }
 }
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f8f9fc;
-  color: #333;
-  overflow-x: hidden;
+/* ---------- LOADING OVERLAY ---------- */
+.loading-overlay {
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  background: rgba(255,255,255,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.loading-overlay .loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #2196f3;
+  width: 70px;
+  height: 70px;
+  animation: spin 1s linear infinite, glowPulse 1.5s ease-in-out infinite;
 }
 
 /* ---------- 3D FLOATING BACKGROUND ---------- */
@@ -195,15 +271,9 @@ body {
 }
 
 @keyframes float {
-  0% {
-    transform: translateY(0) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-60px) rotate(180deg);
-  }
-  100% {
-    transform: translateY(0) rotate(360deg);
-  }
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-60px) rotate(180deg); }
+  100% { transform: translateY(0) rotate(360deg); }
 }
 
 /* ---------- MAIN CONTENT (GLASS STYLE) ---------- */
@@ -228,21 +298,6 @@ h3 {
   color: #1565c0;
 }
 
-/* ---------- FORM STYLES ---------- */
-form input, form textarea {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 15px;
-  background: #fff;
-}
-
-form textarea {
-  resize: none;
-}
-
 /* ---------- FILE UPLOAD GRID ---------- */
 .image-upload-grid {
   display: grid;
@@ -257,55 +312,26 @@ form textarea {
   border-radius: 8px;
 }
 
-/* ---------- TERMS & CONDITIONS ---------- */
-.terms {
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  color: #555;
-  background: rgba(255, 255, 255, 0.7);
-  padding: 12px;
-  border-radius: 8px;
-  margin-top: 10px;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+.image-upload-grid img {
+  width: 100%;
+  height: auto;
+  max-height: 120px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
 }
 
-.terms a {
-  color: #1565c0;
-  font-weight: 600;
-  text-decoration: underline;
-  transition: color 0.3s ease;
-}
-
-.terms a:hover {
-  color: #0d47a1;
-}
-
-/* ---------- BUTTON ---------- */
-.btn-glow {
-  display: inline-block;
-  padding: 12px 20px;
-  background: #2196f3;
-  color: #fff;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(33, 150, 243, 0.4);
-}
-
-.btn-glow:hover {
-  background: #1976d2;
-  box-shadow: 0 4px 20px rgba(25, 118, 210, 0.6);
+.image-upload-grid input[type="file"] {
+  font-size: 12px;
 }
 
 /* ---------- MODAL ---------- */
 .modal {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
   background: rgba(0,0,0,0.6);
   display: flex;
   justify-content: center;
@@ -330,98 +356,24 @@ form textarea {
 }
 
 /* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  .image-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  button, input[type="submit"], .btn-glow {
+    width: 100%;
+  }
+}
+
 @media (max-width: 600px) {
   .glass {
     margin: 10px;
     padding: 15px;
   }
-
   .image-upload-grid {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   }
-
-  .btn-glow {
-    width: 100%;
-  }
-
-  /* ---------- LOADING OVERLAY (DYNAMIC) ---------- */
-.loading-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(255,255,255,0.85);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000;
-}
-
-.loading-overlay .loader {
-  border: 8px solid #f3f3f3;
-  border-top: 8px solid #2196f3;
-  border-radius: 50%;
-  width: 70px;
-  height: 70px;
-  animation: spin 1s linear infinite, glowPulse 1.5s ease-in-out infinite;
-}
-
-/* Reuse your existing keyframes spin & glowPulse */
-
-/* ---------- PREVIEW IMAGE FIX ---------- */
-.image-upload-grid img {
-  width: 100%;
-  height: auto;
-  max-height: 120px;
-  object-fit: cover;
-  border-radius: 6px;
-  display: block;
-}
-
-/* Limit huge uploads */
-.image-upload-grid input[type="file"] {
-  font-size: 12px;
-}
-
-/* ---------- PREVENT BUTTONS FROM BEING CUT OFF ---------- */
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-form > *:last-child {
-  margin-top: auto;
-}
-
-
   .modal-content {
     padding: 15px;
   }
 }
-
-.contact-icons {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.mail-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 20px;
-  background: linear-gradient(90deg, #4facfe, #00f2fe);
-  color: white;
-  font-size: 1.1rem;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: transform 0.2s, background 0.3s;
-}
-
-.mail-button i {
-  font-size: 1.3rem;
-}
-
-.mail-button:hover {
-  transform: scale(1.05);
-  background: linear-gradient(90deg, #43e97b, #38f9d7);
-}
-
