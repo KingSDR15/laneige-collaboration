@@ -71,7 +71,7 @@ input[type="submit"] {
 .btn-glow {
   display: inline-block;
   padding: 12px 20px;
-  background: #2196f3;
+  background: #c921f3;
   color: #fff;
   font-weight: bold;
   border: none;
@@ -169,8 +169,8 @@ input[type="submit"] {
 }
 
 .terms input[type="checkbox"]:checked {
-    background-color: #af4c84;
-    border-color: #bd3098;
+    background-color: #c75c7c;
+    border-color: #2c6080;
 }
 
 .terms input[type="checkbox"]:checked::after {
@@ -183,7 +183,7 @@ input[type="submit"] {
 }
 
 .terms a {
-    color: #af4c81;
+    color: #960044;
     text-decoration: none;
     font-weight: 500;
     border-bottom: 1px solid transparent;
@@ -391,4 +391,160 @@ h3 {
   .modal-content {
     padding: 15px;
   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------- Classic + Mobile-first Form Styles ---------- */
+.collab-form.classic {
+  max-width: 880px;
+  margin: 16px auto 48px;
+  padding: 22px;
+  background: linear-gradient(180deg,#ffffff,#fbfbfb);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(10,20,24,0.06);
+  color: #122222;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* header */
+.form-head { text-align:center; margin-bottom:14px; }
+.form-head h2 { margin:0; font-size:22px; letter-spacing:0.2px; }
+.form-head .lead { margin:6px 0 0; color:#556; font-size:13px; }
+
+/* grid form */
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.form-group { display:flex; flex-direction:column; }
+.form-group label { font-size:13px; color:#233; margin-bottom:6px; font-weight:600; }
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group textarea {
+  padding:12px 14px;
+  font-size:15px;
+  border-radius:10px;
+  border:1px solid #e3e6e6;
+  background:#fff;
+  color:#0c1a1a;
+  transition:box-shadow .12s ease, border-color .12s ease;
+}
+
+.form-group textarea { min-height:80px; resize:vertical; }
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline:none;
+  border-color:#9cc;
+  box-shadow:0 6px 18px rgba(0,124,140,0.06);
+}
+
+/* Payment picker - classic tile style */
+.payment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+}
+
+.payment-card {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 14px;
+  border-radius:10px;
+  background:#fff;
+  border:1px solid rgba(15,20,20,0.04);
+  cursor:pointer;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+
+.payment-card .pc-left { font-weight:700; color:#102020; font-size:15px; }
+.payment-card .pc-right { font-size:12px; color:#667; }
+
+/* checked state (radio input is hidden but + label selector works) */
+input[type="radio"][name="pm"]:checked + label.payment-card {
+  border-color: rgba(0,120,140,0.25);
+  box-shadow: 0 16px 30px rgba(6,40,45,0.06);
+  transform: translateY(-4px);
+}
+
+/* keyboard focus */
+.payment-card:focus {
+  outline: 3px solid rgba(0,120,140,0.10);
+  outline-offset: 2px;
+  transform: translateY(-3px);
+}
+
+/* actions */
+.form-actions {
+  display:flex;
+  gap:12px;
+  justify-content: flex-end;
+  margin-top:18px;
+}
+
+.btn {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+  border:1px solid transparent;
+  text-decoration:none;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg,#0a0a0a,#3a3a3a);
+  color:#fff;
+  border-color: rgba(0,0,0,0.08);
+}
+
+.btn-outline {
+  background:transparent;
+  color:#0d1a1a;
+  border-color: rgba(6,20,20,0.06);
+}
+
+/* small screens: single-column stacked layout and bigger touch areas */
+@media (max-width: 900px) {
+  .field-grid { grid-template-columns: 1fr; }
+  .form-head h2 { font-size:20px; }
+  .payment-grid { grid-template-columns: repeat(2, 1fr); gap:10px; }
+  .form-actions { flex-direction: column-reverse; align-items: stretch; }
+  .btn { width:100%; justify-content:center; padding:12px; }
+}
+
+/* very small screens */
+@media (max-width: 420px) {
+  .collab-form.classic { padding:16px; margin:8px; }
+  .form-head .lead { font-size:12px; }
+  .form-group input, .form-group textarea { font-size:14px; padding:10px; }
+  .payment-grid { grid-template-columns: repeat(1, 1fr); }
 }
